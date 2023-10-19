@@ -40,7 +40,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && !gameOver) 
         {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            playerAnim.SetTrigger("Jump_trig");
             playerAudio.PlayOneShot(swimSound, 1.0f);
         }
     }
@@ -50,7 +49,7 @@ public class PlayerController : MonoBehaviour
         if(collision.gameObject.CompareTag("Obstacle"))
         {
             gameOver = true;
-            playerAnim.SetBool("Death_b", true);
+            playerAnim.SetBool("gameOver", true);
             Debug.Log("Game Over");
             crashParticle.Play();
             playerAudio.PlayOneShot(deathSound, 1.0f);
