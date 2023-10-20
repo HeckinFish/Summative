@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
         playerAnim = GetComponent<Animator>();
         playerAudio = GetComponent<AudioSource>();
         Physics.gravity *= gravityModifier;
+        crashParticle.Stop();
     }
 
     // Update is called once per frame
@@ -40,7 +41,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && !gameOver) 
         {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            playerAudio.PlayOneShot(swimSound, 1.0f);
+            playerAudio.PlayOneShot(swimSound);
         }
     }
 
@@ -52,7 +53,7 @@ public class PlayerController : MonoBehaviour
             playerAnim.SetBool("gameOver", true);
             Debug.Log("Game Over");
             crashParticle.Play();
-            playerAudio.PlayOneShot(deathSound, 1.0f);
+            playerAudio.PlayOneShot(deathSound);
         }
     }
 }
